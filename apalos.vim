@@ -70,65 +70,68 @@ function! s:hibg(group, guibg, first, second)
 	"exe "highlight ".a:group." guibg=".a:guibg." ctermbg=".ctermbg
 endfunction
 
+" Links Highlighting
 hi link railsMethod					PreProc
 hi link rubyDefine					Keyword
 hi link rubySymbol					Constant
 hi link rubyAccess					rubyMethod
 hi link rubyAttribute				rubyMethod
-hi link rubyEval						rubyMethod
+hi link rubyEval					rubyMethod
 hi link rubyException				rubyMethod
 hi link rubyInclude					rubyMethod
-hi link rubyStringDelimiter rubyString
+hi link rubyStringDelimiter 		rubyString
 hi link rubyRegexp					Regexp
-hi link rubyRegexpDelimiter rubyRegexp
-hi link javascriptRegexpString	Regexp
-hi link javascriptNumber	Number
-hi link javascriptNull		Constant
-highlight link diffAdded	String
-highlight link diffRemoved	Statement
-highlight link diffLine		PreProc
-highlight link diffSubname	Comment
-highlight StatusLine		guifg=Black		guibg=#aabbee gui=bold ctermfg=Black ctermbg=White	cterm=bold
-highlight StatusLineNC		guifg=#444444 guibg=#aaaaaa gui=none ctermfg=Black ctermbg=Grey		cterm=none
-highlight Ignore			ctermfg=Black
-highlight WildMenu			guifg=Black		guibg=#ffff00 gui=bold ctermfg=Black ctermbg=Yellow cterm=bold
-highlight Cursor			guifg=Black guibg=White ctermfg=Black ctermbg=White
-highlight NonText			guifg=#404040 ctermfg=8
-highlight SpecialKey		guifg=#404040 ctermfg=8
-highlight Directory			none
-highlight ErrorMsg			guibg=Red ctermbg=DarkRed guifg=NONE ctermfg=NONE
-highlight Search			guifg=NONE ctermfg=NONE gui=none cterm=none
-highlight IncSearch			guifg=White guibg=Black ctermfg=White ctermbg=Black
-highlight MoreMsg			guifg=#00AA00 ctermfg=Green
-highlight LineNr			guifg=#DDEEFF ctermfg=White
-highlight Question			none
-high link Question			MoreMsg
-highlight Title				guifg=Magenta ctermfg=Magenta
-highlight VisualNOS			gui=none cterm=none
-highlight WarningMsg		guifg=Red ctermfg=Red
-highlight Error				ctermbg=DarkRed
-highlight SpellBad			ctermbg=DarkRed
-highlight SpellRare			ctermbg=DarkMagenta
-highlight SpellCap			ctermbg=DarkBlue
-highlight SpellLocal		ctermbg=DarkCyan
-highlight FoldColumn		none
-high link FoldColumn		Folded
-highlight DiffAdd			ctermbg=4 guibg=DarkBlue
-highlight DiffChange		ctermbg=5 guibg=DarkMagenta
-highlight DiffDelete		ctermfg=12 ctermbg=6 gui=bold guifg=Blue guibg=DarkCyan
-highlight DiffText			ctermbg=DarkRed
-highlight DiffText			cterm=bold ctermbg=9 gui=bold guibg=Red
-highlight Pmenu				guifg=White ctermfg=White gui=bold cterm=bold
-highlight PmenuSel			guifg=White ctermfg=White gui=bold cterm=bold
-highlight PmenuSbar			guibg=Grey ctermbg=Grey
-highlight PmenuThumb		guibg=White ctermbg=White
-highlight TabLine		gui=underline cterm=underline
-highlight TabLineSel		guifg=White guibg=Black ctermfg=White ctermbg=Black
-highlight TabLineFill		gui=underline cterm=underline
-highligh Type gui=none
-highligh Statement gui=none
-highligh Identifier cterm=none
-high link Directory			Identifier
+hi link rubyRegexpDelimiter 		rubyRegexp
+hi link javascriptRegexpString		Regexp
+hi link javascriptNumber			Number
+hi link javascriptNull				Constant
+hi link diffAdded					String
+hi link diffRemoved					Statement
+hi link diffLine					PreProc
+hi link Question					MoreMsg
+hi link diffSubname					Comment
+hi link FoldColumn					Folded
+hi link Directory					Identifier
+
+" Highlighting
+hi StatusLine		guifg=Black	guibg=#aabbee gui=bold ctermfg=Black ctermbg=White cterm=bold
+hi StatusLineNC		guifg=#444444 guibg=#aaaaaa gui=none ctermfg=Black ctermbg=Grey	cterm=none
+hi Ignore			ctermfg=Black
+hi WildMenu			guifg=Black		guibg=#ffff00 gui=bold ctermfg=Black ctermbg=Yellow cterm=bold
+hi Cursor			guifg=Black guibg=White ctermfg=Black ctermbg=White
+hi NonText			guifg=#404040 ctermfg=8
+hi SpecialKey		guifg=#404040 ctermfg=8
+hi Directory		none
+hi ErrorMsg			guibg=Red ctermbg=DarkRed guifg=NONE ctermfg=NONE
+hi Search			guifg=NONE ctermfg=NONE gui=none cterm=none
+hi IncSearch		guifg=White guibg=Black ctermfg=White ctermbg=Black
+hi MoreMsg			guifg=#00AA00 ctermfg=Green
+hi LineNr			guifg=#DDEEFF ctermfg=White
+hi Question			none
+hi Title			guifg=Magenta ctermfg=Magenta
+hi VisualNOS		gui=none cterm=none
+hi WarningMsg		guifg=Red ctermfg=Red
+hi Error			ctermbg=DarkRed
+hi SpellBad			ctermbg=DarkRed
+hi SpellRare		ctermbg=DarkMagenta
+hi SpellCap			ctermbg=DarkBlue
+hi SpellLocal		ctermbg=DarkCyan
+hi FoldColumn		none
+hi DiffAdd			ctermbg=4 guibg=DarkBlue
+hi DiffChange		ctermbg=5 guibg=DarkMagenta
+hi DiffDelete		ctermfg=12 ctermbg=6 gui=bold guifg=Blue guibg=DarkCyan
+hi DiffText			ctermbg=DarkRed
+hi DiffText			cterm=bold ctermbg=9 gui=bold guibg=Red
+hi Pmenu			guifg=White ctermfg=White gui=bold cterm=bold
+hi PmenuSel			guifg=White ctermfg=White gui=bold cterm=bold
+hi PmenuSbar		guibg=Grey ctermbg=Grey
+hi PmenuThumb		guibg=White ctermbg=White
+hi TabLine			gui=underline cterm=underline
+hi TabLineSel		guifg=White guibg=Black ctermfg=White ctermbg=Black
+hi TabLineFill		gui=underline cterm=underline
+hi Type 			gui=none
+hi Statement 		gui=none
+hi Identifier 		cterm=none
 
 " Commented numbers at the end are *old* 256 color values
 "highlight PreProc			 guifg=#EDF8F9
