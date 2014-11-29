@@ -1,5 +1,4 @@
 apalos-vim
 ==========
-
 vim colorcheme
-o Heavily based on vivdchalk
+Heavily based on vivdchalk
