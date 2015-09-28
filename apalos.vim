@@ -1,12 +1,20 @@
 " Vim color scheme
 " Name:					apalos.vim
-" Author:				Ilias Apalodimas <apalos@oxygenbroadband.com>
-" Version:			0.1
+" Author:				Ilias Apalodimas <apalos@gmail.com>
+" Version:				0.1.1
 
 " Based vividchalk
 " Functions shamelesly stolen from vivdchalk.vim. All credit goes there!
 " Distributable under the same terms as Vim itself (see :help license)
 " http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
+
+" cterm - sets the style
+" ctermfg - set the text color
+" ctermbg - set the highlighting
+" DiffAdd - line was added
+" DiffDelete - line was removed
+" DiffChange - part of the line was changed (highlights the whole line)
+" DiffText - the exact part of the line that changed
 
 set background=dark
 set t_Co=256
@@ -14,12 +22,36 @@ hi clear
 if exists("syntax_on")
 	syntax reset
 endif
+
 let colors_name = "apalos"
 
 " map a urxvt cube number to an xterm-256 cube number
 fun! s:M(a)
 		return strpart("0245", a:a, 1) + 0
 endfun
+
+" General Settings
+" Set Background colour
+if &background == "light" || has("gui_running")
+		hi Normal guibg=Black ctermbg=Black
+		let s:low_color = 0
+else
+		hi Normal guibg=Black ctermbg=234
+		let s:low_color = 1
+endif
+" mac crap
+if !has("gui_mac")
+	" Mac GUI degrades italics to ugly underlining.
+	hi Comment gui=italic
+	hi railsUserClass  gui=italic
+	hi railsUserMethod gui=italic
+endif
+
+if &t_Co == 256
+	highlight StatusLine ctermbg=117
+else
+	highlight StatusLine ctermbg=43
+endif
 
 " map a urxvt colour to an xterm-256 colour
 fun! s:X(a)
@@ -70,6 +102,44 @@ function! s:hibg(group, guibg, first, second)
 	"exe "highlight ".a:group." guibg=".a:guibg." ctermbg=".ctermbg
 endfunction
 
+" sets the highlighting for the given group
+fun! s:xj(group, fg, bg, attr, lcfg, lcbg)
+  if s:low_color
+    let l:fge = empty(a:lcfg)
+    let l:bge = empty(a:lcbg)
+
+    if !l:fge && !l:bge
+      exec "hi ".a:group." ctermfg=".a:lcfg." ctermbg=".a:lcbg
+    elseif !l:fge && l:bge
+      exec "hi ".a:group." ctermfg=".a:lcfg." ctermbg=NONE"
+    elseif l:fge && !l:bge
+      exec "hi ".a:group." ctermfg=NONE ctermbg=".a:lcbg
+    endif
+  else
+    let l:fge = empty(a:fg)
+    let l:bge = empty(a:bg)
+
+    if !l:fge && !l:bge
+      exec "hi ".a:group." guifg=#".a:fg." guibg=#".a:bg." ctermfg=".s:X(a:fg)." ctermbg=".s:X(a:bg)
+    elseif !l:fge && l:bge
+      exec "hi ".a:group." guifg=#".a:fg." guibg=NONE ctermfg=".s:X(a:fg)." ctermbg=NONE"
+    elseif l:fge && !l:bge
+      exec "hi ".a:group." guifg=NONE guibg=#".a:bg." ctermfg=NONE ctermbg=".s:X(a:bg)
+    endif
+  endif
+
+  if a:attr == ""
+    exec "hi ".a:group." gui=none cterm=none"
+  else
+    let noitalic = join(filter(split(a:attr, ","), "v:val !=? 'italic'"), ",")
+    if empty(noitalic)
+      let noitalic = "none"
+    endif
+    exec "hi ".a:group." gui=".a:attr." cterm=".noitalic
+  endif
+endfun
+
+
 " Links Highlighting
 hi link railsMethod					PreProc
 hi link rubyDefine					Keyword
@@ -117,11 +187,6 @@ hi SpellRare		ctermbg=DarkMagenta
 hi SpellCap			ctermbg=DarkBlue
 hi SpellLocal		ctermbg=DarkCyan
 hi FoldColumn		none
-hi DiffAdd			ctermbg=4 guibg=DarkBlue
-hi DiffChange		ctermbg=5 guibg=DarkMagenta
-hi DiffDelete		ctermfg=12 ctermbg=6 gui=bold guifg=Blue guibg=DarkCyan
-hi DiffText			ctermbg=DarkRed
-hi DiffText			cterm=bold ctermbg=9 gui=bold guibg=Red
 hi Pmenu			guifg=White ctermfg=White gui=bold cterm=bold
 hi PmenuSel			guifg=White ctermfg=White gui=bold cterm=bold
 hi PmenuSbar		guibg=Grey ctermbg=Grey
@@ -132,6 +197,17 @@ hi TabLineFill		gui=underline cterm=underline
 hi Type 			gui=none
 hi Statement 		gui=none
 hi Identifier 		cterm=none
+" Diff
+"hi DiffAdd			ctermbg=4 guibg=DarkBlue
+"hi DiffChange		ctermbg=5 guibg=DarkMagenta
+"hi DiffDelete		ctermfg=12 ctermbg=6 gui=bold guifg=Blue guibg=DarkCyan
+"hi DiffText			ctermbg=DarkRed
+"hi DiffText			cterm=bold ctermbg=9 gui=bold guibg=Red
+
+call s:xj("DiffAdd","D2EBBE","437019","","White","DarkGreen")
+call s:xj("DiffDelete","40000A","700009","","DarkRed","DarkRed")
+call s:xj("DiffChange","","2B5B77","","White","DarkBlue")
+call s:xj("DiffText","8fbfdc","000000","reverse","Yellow","")
 
 " Commented numbers at the end are *old* 256 color values
 "highlight PreProc			 guifg=#EDF8F9
@@ -161,25 +237,4 @@ call s:hibg("Search" , "#555555", "DarkBlue", 81)
 call s:hibg("LineNr" , "#222222", "DarkBlue", 80)
 call s:hibg("Folded", "#110077", "DarkBlue", 17)
 call s:hifg("Folded", "#aaddee", "LightCyan", 63)
-
-" General Settings
-" Set Background colour
 call s:hifg("Normal","#EEEEEE","White",87)
-if &background == "light" || has("gui_running")
-		hi Normal guibg=Black ctermbg=Black
-else
-		hi Normal guibg=Black ctermbg=234
-endif
-" mac crap
-if !has("gui_mac")
-		" Mac GUI degrades italics to ugly underlining.
-		hi Comment gui=italic
-		hi railsUserClass  gui=italic
-		hi railsUserMethod gui=italic
-endif
-
-if &t_Co == 256
-		highlight StatusLine ctermbg=117
-else
-		highlight StatusLine ctermbg=43
-endif
