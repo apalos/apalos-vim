@@ -8,9 +8,10 @@
 " Distributable under the same terms as Vim itself (see :help license)
 " http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 
-" cterm - sets the style
-" ctermfg - set the text color
-" ctermbg - set the highlighting
+
+" gui/cterm - sets the style
+" guifg/ctermfg - set the text color
+" guibg/ctermbg - set the highlighting
 " DiffAdd - line was added
 " DiffDelete - line was removed
 " DiffChange - part of the line was changed (highlights the whole line)
@@ -30,15 +31,6 @@ fun! s:M(a)
 		return strpart("0245", a:a, 1) + 0
 endfun
 
-" General Settings
-" Set Background colour
-if &background == "light" || has("gui_running")
-		hi Normal guibg=Black ctermbg=Black
-		let s:low_color = 0
-else
-		hi Normal guibg=Black ctermbg=234
-		let s:low_color = 1
-endif
 " mac crap
 if !has("gui_mac")
 	" Mac GUI degrades italics to ugly underlining.
@@ -82,6 +74,7 @@ function! s:choose(mediocre, good)
 	endif
 endfunction
 
+"a:1 is the first arg for *arg 
 function! s:hifg(group, guifg, first, second,...)
 	if a:0  && &t_Co == 256
 		let ctermfg = a:1
@@ -97,48 +90,8 @@ function! s:hibg(group, guibg, first, second)
 	else
 		let ctermbg = s:choose(a:first, a:second)
 	endif
-	exe "highlight ".a:group." guifg=".a:guibg." ctermfg=".ctermbg
-	"let ctermbg = s:choose(a:first, a:second)
-	"exe "highlight ".a:group." guibg=".a:guibg." ctermbg=".ctermbg
+	exe "highlight ".a:group." guibg=".a:guibg." ctermbg=".ctermbg
 endfunction
-
-" sets the highlighting for the given group
-fun! s:xj(group, fg, bg, attr, lcfg, lcbg)
-  if s:low_color
-    let l:fge = empty(a:lcfg)
-    let l:bge = empty(a:lcbg)
-
-    if !l:fge && !l:bge
-      exec "hi ".a:group." ctermfg=".a:lcfg." ctermbg=".a:lcbg
-    elseif !l:fge && l:bge
-      exec "hi ".a:group." ctermfg=".a:lcfg." ctermbg=NONE"
-    elseif l:fge && !l:bge
-      exec "hi ".a:group." ctermfg=NONE ctermbg=".a:lcbg
-    endif
-  else
-    let l:fge = empty(a:fg)
-    let l:bge = empty(a:bg)
-
-    if !l:fge && !l:bge
-      exec "hi ".a:group." guifg=#".a:fg." guibg=#".a:bg." ctermfg=".s:X(a:fg)." ctermbg=".s:X(a:bg)
-    elseif !l:fge && l:bge
-      exec "hi ".a:group." guifg=#".a:fg." guibg=NONE ctermfg=".s:X(a:fg)." ctermbg=NONE"
-    elseif l:fge && !l:bge
-      exec "hi ".a:group." guifg=NONE guibg=#".a:bg." ctermfg=NONE ctermbg=".s:X(a:bg)
-    endif
-  endif
-
-  if a:attr == ""
-    exec "hi ".a:group." gui=none cterm=none"
-  else
-    let noitalic = join(filter(split(a:attr, ","), "v:val !=? 'italic'"), ",")
-    if empty(noitalic)
-      let noitalic = "none"
-    endif
-    exec "hi ".a:group." gui=".a:attr." cterm=".noitalic
-  endif
-endfun
-
 
 " Links Highlighting
 hi link railsMethod					PreProc
@@ -197,20 +150,23 @@ hi TabLineFill		gui=underline cterm=underline
 hi Type 			gui=none
 hi Statement 		gui=none
 hi Identifier 		cterm=none
-" Diff
-"hi DiffAdd			ctermbg=4 guibg=DarkBlue
-"hi DiffChange		ctermbg=5 guibg=DarkMagenta
-"hi DiffDelete		ctermfg=12 ctermbg=6 gui=bold guifg=Blue guibg=DarkCyan
-"hi DiffText			ctermbg=DarkRed
-"hi DiffText			cterm=bold ctermbg=9 gui=bold guibg=Red
 
-call s:xj("DiffAdd","D2EBBE","437019","","White","DarkGreen")
-call s:xj("DiffDelete","40000A","700009","","DarkRed","DarkRed")
-call s:xj("DiffChange","","2B5B77","","White","DarkBlue")
-call s:xj("DiffText","8fbfdc","000000","reverse","Yellow","")
+
+" Diff
+call s:hibg("DiffAdd", "White", "White", "DarkGreen")
+call s:hifg("DiffAdd", "White", "White", "White")
+
+call s:hibg("DiffDelete", "White", "DarkRed", "DarkRed")
+call s:hifg("DiffDelete", "White", "DarkRed", "White")
+
+call s:hibg("DiffText", "White", "DarkGreen", "Brown")
+call s:hifg("DiffText", "White", "SeaGreen2", "White")
+
+call s:hibg("DiffChange", "White", "DarkBlue", "DarkGrey")
+call s:hifg("DiffChange", "White", "DarkBlue", "White")
+
 
 " Commented numbers at the end are *old* 256 color values
-"highlight PreProc			 guifg=#EDF8F9
 call s:hifg("Comment", "#9933CC", "DarkMagenta", 34, 92)
 call s:hifg("Constant", "#339999", "DarkCyan", 21, 36)
 call s:hifg("rubyNumber", "#CCFF33", "Yellow", 60)
@@ -224,15 +180,18 @@ call s:hifg("railsUserClass", "#AAAAAA", "Grey", 7)
 call s:hifg("Special", "#33AA00", "DarkGreen", 24)
 call s:hifg("Regexp", "#44B4CC", "DarkCyan", 21)
 call s:hifg("rubyMethod", "#DDE93D", "Yellow", 77)
+
+call s:hifg("TabLineFill", "#bbbbbb","LightGrey",85)
+call s:hibg("TabLineFill", "#808080","Grey",83)
+
+call s:hifg("TabLine" ,"#bbbbbb","LightGrey",85)
+call s:hibg("TabLine" ,"#333333","DarkGrey",80)
+
 call s:hibg("ColorColumn", "#333333", "DarkGrey", 81)
 call s:hibg("CursorLine", "#333333", "DarkGrey", 81)
 call s:hibg("CursorColumn", "#333333", "DarkGrey", 81)
-call s:hifg("TabLineFill", "#bbbbbb","LightGrey",85)
-call s:hibg("TabLineFill", "#808080","Grey",83)
 call s:hibg("Pmenu", "#000099","Blue", 18)
 call s:hibg("PmenuSel", "#5555ff", "DarkCyan",39)
-call s:hifg("TabLine" ,"#bbbbbb","LightGrey",85)
-call s:hibg("TabLine" ,"#333333","DarkGrey",80)
 call s:hibg("Search" , "#555555", "DarkBlue", 81)
 call s:hibg("LineNr" , "#222222", "DarkBlue", 80)
 call s:hibg("Folded", "#110077", "DarkBlue", 17)
