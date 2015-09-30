@@ -20,6 +20,7 @@
 set background=dark
 set t_Co=256
 hi clear
+
 if exists("syntax_on")
 	syntax reset
 endif
@@ -28,7 +29,7 @@ let colors_name = "apalos"
 
 " map a urxvt cube number to an xterm-256 cube number
 fun! s:M(a)
-		return strpart("0245", a:a, 1) + 0
+	return strpart("0245", a:a, 1) + 0
 endfun
 
 " mac crap
@@ -74,9 +75,9 @@ function! s:choose(mediocre, good)
 	endif
 endfunction
 
-"a:1 is the first arg for *arg 
+"a:0 number of *arg, a:1 is the first arg for *arg  etc
 function! s:hifg(group, guifg, first, second,...)
-	if a:0  && &t_Co == 256
+	if a:0 && &t_Co == 256
 		let ctermfg = a:1
 	else
 		let ctermfg = s:choose(a:first, a:second)
@@ -85,11 +86,7 @@ function! s:hifg(group, guifg, first, second,...)
 endfunction
 
 function! s:hibg(group, guibg, first, second)
-	if a:0  && &t_Co == 256
-		let ctermbg = a:1
-	else
-		let ctermbg = s:choose(a:first, a:second)
-	endif
+	let ctermbg = s:choose(a:first, a:second)
 	exe "highlight ".a:group." guibg=".a:guibg." ctermbg=".ctermbg
 endfunction
 
@@ -151,7 +148,6 @@ hi Type 			gui=none
 hi Statement 		gui=none
 hi Identifier 		cterm=none
 
-
 " Diff
 call s:hibg("DiffAdd", "White", "White", "DarkGreen")
 call s:hifg("DiffAdd", "White", "White", "White")
@@ -165,14 +161,13 @@ call s:hifg("DiffText", "White", "SeaGreen2", "White")
 call s:hibg("DiffChange", "White", "DarkBlue", "DarkGrey")
 call s:hifg("DiffChange", "White", "DarkBlue", "White")
 
-
 " Commented numbers at the end are *old* 256 color values
-call s:hifg("Comment", "#9933CC", "DarkMagenta", 34, 92)
-call s:hifg("Constant", "#339999", "DarkCyan", 21, 36)
+call s:hifg("Comment", "#9933CC", "DarkMagenta", 75, 222)
+call s:hifg("Constant", "#339999", "DarkCyan", 21, 35)
 call s:hifg("rubyNumber", "#CCFF33", "Yellow", 60)
 call s:hifg("String", "#66FF00", "SeaGreen2", 44, 83)
 call s:hifg("Identifier", "#FFCC00", "Yellow", 72, 206)
-call s:hifg("Statement", "#FF6600", "Brown", 170, 32)
+call s:hifg("Statement", "#FF6600", "Brown", 170, 81)
 call s:hifg("PreProc", "#AAFFFF", "LightCyan", 47, 196)
 call s:hifg("railsUserMethod", "#AACCFF", "LightCyan", 27)
 call s:hifg("Type",	 "#FF6600", "Grey", 57, 202)
@@ -180,9 +175,12 @@ call s:hifg("railsUserClass", "#AAAAAA", "Grey", 7)
 call s:hifg("Special", "#33AA00", "DarkGreen", 24)
 call s:hifg("Regexp", "#44B4CC", "DarkCyan", 21)
 call s:hifg("rubyMethod", "#DDE93D", "Yellow", 77)
+call s:hifg("VertSplit", "#DDE93D", "Yellow", 1, 140)
+call s:hifg("Normal","#EEEEEE","White", 87, 250)
+call s:hifg("Folded", "#aaddee", "LightCyan", 63)
 
-call s:hifg("TabLineFill", "#bbbbbb","LightGrey",85)
-call s:hibg("TabLineFill", "#808080","Grey",83)
+call s:hifg("TabLineFill", "#bbbbbb","LightGrey", 85)
+call s:hibg("TabLineFill", "#808080","Grey", 83)
 
 call s:hifg("TabLine" ,"#bbbbbb","LightGrey",85)
 call s:hibg("TabLine" ,"#333333","DarkGrey",80)
@@ -195,5 +193,3 @@ call s:hibg("PmenuSel", "#5555ff", "DarkCyan",39)
 call s:hibg("Search" , "#555555", "DarkBlue", 81)
 call s:hibg("LineNr" , "#222222", "DarkBlue", 80)
 call s:hibg("Folded", "#110077", "DarkBlue", 17)
-call s:hifg("Folded", "#aaddee", "LightCyan", 63)
-call s:hifg("Normal","#EEEEEE","White",87)
