@@ -147,6 +147,7 @@ hi TabLineFill		gui=underline cterm=underline
 hi Type 			gui=none
 hi Statement 		gui=none
 hi Identifier 		cterm=none
+hi Visual               guifg=Yellow guibg=Grey gui=none
 
 " Diff
 call s:hibg("DiffAdd", "DarkGreen", "White", "DarkGreen")
