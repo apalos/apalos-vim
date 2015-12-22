@@ -81,3 +81,4 @@ endif " has("autocmd")
 
 autocmd CursorMoved * if pumvisible() == 0|pclose|endif
 autocmd FileType c,cpp,java,php,perl,pl,python,py autocmd BufWritePre <buffer> :%s/\s\+$//e
+match OverLength /\%81v.\+/

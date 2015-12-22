@@ -75,7 +75,9 @@ function! s:choose(mediocre, good)
 	endif
 endfunction
 
-"a:0 number of *arg, a:1 is the first arg for *arg  etc
+"a:0 number of extra args(after 'second', a:0 is if more than 4 args are
+"passed)
+"a:1 is the first arg etc
 function! s:hifg(group, guifg, first, second,...)
 	if a:0 && &t_Co == 256
 		let ctermfg = a:1
@@ -177,7 +179,7 @@ call s:hifg("Special", "#005f87", "DarkGreen", 24)
 call s:hifg("Regexp", "#0000ff", "DarkCyan", 21)
 call s:hifg("rubyMethod", "#5fd75f", "Yellow", 77)
 call s:hifg("VertSplit", "#af87d7", "Yellow", 1, 140)
-call s:hifg("Normal", "#bcbcbc", "White", 87, 250)
+call s:hifg("Normal", "#bcbcbc", "White", 87, 248)
 call s:hibg("Normal", "#000000", "White", 16)
 call s:hifg("Folded", "#5f5fff", "LightCyan", 63)
 
@@ -195,3 +197,4 @@ call s:hibg("PmenuSel", "#00afff", "DarkCyan",39)
 "call s:hibg("Search", "Purple", "DarkBlue", 81)
 call s:hibg("LineNr", "#5fff5f", "DarkBlue", 80)
 call s:hibg("Folded", "#00005f", "DarkBlue", 17)
+call s:hibg("Overlength", "#00005f", "Purple", 82)
