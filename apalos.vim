@@ -125,7 +125,7 @@ hi NonText			guifg=#404040 ctermfg=8
 hi SpecialKey		guifg=#404040 ctermfg=8
 hi Directory		none
 hi ErrorMsg			guibg=Red ctermbg=DarkRed guifg=NONE ctermfg=NONE
-hi Search		guifg=Yellow guibg=Purple gui=underline ctermfg=NONE cterm=none
+hi Search			guifg=Yellow guibg=Purple gui=underline ctermfg=NONE cterm=none
 hi IncSearch		guifg=Black guibg=Yellow ctermfg=White ctermbg=Black
 hi MoreMsg			guifg=#00AA00 ctermfg=Green
 hi LineNr			guifg=#DDEEFF ctermfg=White
@@ -194,7 +194,7 @@ call s:hibg("CursorLine", "#5fd7ff", "DarkGrey", 81)
 call s:hibg("CursorColumn", "#5fd7ff", "DarkGrey", 81)
 call s:hibg("Pmenu", "#000087", "Blue", 18)
 call s:hibg("PmenuSel", "#00afff", "DarkCyan",39)
-"call s:hibg("Search", "Purple", "DarkBlue", 81)
-call s:hibg("LineNr", "#5fff5f", "DarkBlue", 80)
+call s:hibg("Search", "Purple", "DarkBlue", 105)
+call s:hibg("LineNr", "#5fff5f", "DarkBlue", 81)
 call s:hibg("Folded", "#00005f", "DarkBlue", 17)
 call s:hibg("Overlength", "#00005f", "Purple", 82)
