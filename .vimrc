@@ -5,27 +5,23 @@ endif
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
-set nocompatible
 colorscheme apalos
 
+set t_Co=256
+set autoindent		" always set autoindenting on
+set nocompatible
 set enc=utf-8
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf8,prc
 set guifont=Monaco:h11
 set guifontwide=NSimsun:h12
-set t_Co=256
-set autoindent		" always set autoindenting on
-set tabstop=4
-set shiftwidth=4
-set nowrap
-set ts=4
-set sb
 set previewheight=3
-set history=50		" keep 50 lines of command line history
+set history=50		"keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 set hidden
+set nowrap
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 set statusline+=\%f\ line:\%l,
@@ -63,8 +59,8 @@ if has("autocmd")
   augroup vimrcEx
   au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+  " For all text files set 'textwidth' to 80 characters.
+  autocmd FileType text setlocal textwidth=80
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -81,4 +77,35 @@ endif " has("autocmd")
 
 autocmd CursorMoved * if pumvisible() == 0|pclose|endif
 autocmd FileType c,cpp,java,php,perl,pl,python,py autocmd BufWritePre <buffer> :%s/\s\+$//e
-match OverLength /\%81v.\+/
+match OverLength /\%80v.\+/
+
+" Defaults
+set tabstop=8
+set shiftwidth=8
+set ts=8
+set noexpandtab
+set textwidth=80
+
+autocmd Filetype c,cpp
+	\ set shiftwidth=8 |
+	\ set tabstop=8 |
+	\ set softtabstop=8 |
+	\ set noexpandtab |
+	\ set textwidth=80
+
+autocmd Filetype python
+	\ set shiftwidth=4 |
+	\ set tabstop=4 |
+	\ set softtabstop=4 |
+	\ set expandtab |
+	\ set textwidth=80
+
+autocmd Filetype perl
+	\ set shiftwidth=4 |
+	\ set tabstop=4 |
+	\ set softtabstop=4 |
+	\ set noexpandtab |
+	\ set textwidth=80
+
+"syntax match Tab /\t/
+"hi Tab gui=underline guifg=blue ctermbg=blue
