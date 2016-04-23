@@ -27,6 +27,16 @@ endif
 
 let colors_name = "apalos"
 
+" General Settings
+" Set Background colour
+if &background == "light" || has("gui_running")
+		hi Normal guibg=Black ctermbg=White
+		let s:low_color = 0
+else
+		hi Normal guibg=Black ctermbg=White
+		let s:low_color = 1
+endif
+
 " map a urxvt cube number to an xterm-256 cube number
 fun! s:M(a)
 	return strpart("0245", a:a, 1) + 0
