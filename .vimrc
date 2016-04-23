@@ -1,6 +1,6 @@
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
-  finish
+	finish
 endif
 
 " Use Vim settings, rather then Vi settings (much better!).
@@ -28,10 +28,17 @@ set statusline+=\%f\ line:\%l,
 set statusline+=\ col:\ %c,
 set laststatus=2
 
+" Defaults
+set tabstop=8
+set shiftwidth=8
+set ts=8
+set noexpandtab
+set textwidth=80
+
 if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
+	set nobackup		" do not keep a backup file, use versions instead
 else
-  set nobackup		" keep a backup file
+	set nobackup		" keep a backup file
 endif
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -42,70 +49,58 @@ map Q gq
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
+	syntax on
+	set hlsearch
 endif
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
+	" Enable file type detection.
+	" Use the default filetype settings, so that mail gets 'tw' set to 72,
+	" 'cindent' is on in C files, etc.
+	" Also load indent files, to automatically do language-dependent indenting.
+	filetype plugin indent on
 
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
+	" Put these in an autocmd group, so that we can delete them easily.
+	augroup vimrcEx
+		au!
 
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
+		autocmd FileType text setlocal textwidth=80
 
-  " For all text files set 'textwidth' to 80 characters.
-  autocmd FileType text setlocal textwidth=80
+		" When editing a file, always jump to the last known cursor position.
+		" Don't do it when the position is invalid or when inside an event handler
+		" (happens when dropping a file on gvim).
+		autocmd BufReadPost *
+			\ if line("'\"") > 0 && line("'\"") <= line("$") |
+				\   exe "normal g`\"" |
+			\ endif
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+	augroup END
+	autocmd Filetype c,cpp
+		\ set shiftwidth=8 |
+		\ set tabstop=8 |
+		\ set softtabstop=8 |
+		\ set noexpandtab |
+		\ set textwidth=80
 
-  augroup END
+	autocmd Filetype python
+		\ set shiftwidth=4 |
+		\ set tabstop=4 |
+		\ set softtabstop=4 |
+		\ set expandtab |
+		\ set textwidth=80
 
+	autocmd Filetype perl
+		\ set shiftwidth=4 |
+		\ set tabstop=4 |
+		\ set softtabstop=4 |
+		\ set noexpandtab |
+		\ set textwidth=80
 else
+
 endif " has("autocmd")
 
 autocmd CursorMoved * if pumvisible() == 0|pclose|endif
 autocmd FileType c,cpp,java,php,perl,pl,python,py autocmd BufWritePre <buffer> :%s/\s\+$//e
-match OverLength /\%80v.\+/
-
-" Defaults
-set tabstop=8
-set shiftwidth=8
-set ts=8
-set noexpandtab
-set textwidth=80
-
-autocmd Filetype c,cpp
-	\ set shiftwidth=8 |
-	\ set tabstop=8 |
-	\ set softtabstop=8 |
-	\ set noexpandtab |
-	\ set textwidth=80
-
-autocmd Filetype python
-	\ set shiftwidth=4 |
-	\ set tabstop=4 |
-	\ set softtabstop=4 |
-	\ set expandtab |
-	\ set textwidth=80
-
-autocmd Filetype perl
-	\ set shiftwidth=4 |
-	\ set tabstop=4 |
-	\ set softtabstop=4 |
-	\ set noexpandtab |
-	\ set textwidth=80
-
 "syntax match Tab /\t/
 "hi Tab gui=underline guifg=blue ctermbg=blue
