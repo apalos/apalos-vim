@@ -42,37 +42,37 @@ function! s:hibg(group, guibg, first)
 	exe "highlight ".a:group." guibg=".a:guibg." ctermbg=".ctermbg
 endfunction
 
+call s:hifg("Special", "#005f87", 124)
+call s:hifg("VertSplit", "#af87d7", 196)
+
+" Diff
+call s:hibg("DiffAdd", "DarkGreen", "DarkGreen")
+call s:hifg("DiffAdd", "White", "White")
+
+call s:hibg("DiffDelete", "DarkRed", "DarkRed")
+call s:hifg("DiffDelete", "White", "White")
+
+call s:hibg("DiffText", "DarkGreen", "DarkGreen")
+call s:hifg("DiffText", "White", "White")
+
+call s:hibg("DiffChange", "DarkGrey", "DarkGrey")
+call s:hifg("DiffChange", "White", "White")
+
 if &background == 'dark'
 " Highlighting
 " Diff
-	call s:hibg("DiffAdd", "DarkGreen", "DarkGreen")
-	call s:hifg("DiffAdd", "White", "White")
-
-	call s:hibg("DiffDelete", "DarkRed", "DarkRed")
-	call s:hifg("DiffDelete", "White", "White")
-
-	call s:hibg("DiffText", "Brown", "Brown")
-	call s:hifg("DiffText", "White", "White")
-
-	call s:hibg("DiffChange", "DarkBlue", "DarkBlue")
-	call s:hifg("DiffChange", "White", "White")
-
 	" General
 	call s:hifg("Comment", "#ffd787", 165)
 	call s:hibg("ColorColumn", "#5fd7ff", "DarkGrey")
 	call s:hifg("Constant", "#00af5f", 196)
-	call s:hifg("rubyNumber", "#5f5f87", 196)
-	call s:hifg("String", "#5fff5f", 34)
+	call s:hifg("String", "#5fff5f", 28)
 	call s:hifg("Identifier", "#ff5fd7", 196)
 	call s:hifg("Statement", "#5fd7ff", 39)
 	call s:hifg("PreProc", "#ff0000", 94)
 	call s:hifg("railsUserMethod", "#005fff", "DarkCyan")
 	call s:hifg("Type", "#ff5f00", 202)
 	call s:hifg("railsUserClass", "#0000af", "Grey")
-	call s:hifg("Special", "#005f87", "DarkGreen")
 	call s:hifg("Regexp", "#0000ff", "DarkCyan")
-	call s:hifg("rubyMethod", "#5fd75f", 196)
-	call s:hifg("VertSplit", "#af87d7", 196)
 	call s:hifg("Folded", "#5f5fff", "LightCyan")
 	call s:hifg("TabLineFill", "#5fffaf", "LightGrey")
 	call s:hibg("TabLineFill", "#5fff5f", "Grey")
@@ -92,37 +92,20 @@ if &background == 'dark'
 	"Backgroung colour
 	call s:hibg("Normal", "#000000", "Black")
 	call s:hifg("Normal", "#ffffff", "White")
+
 else
-	" Highlighting
-	" Diff
-	call s:hibg("DiffAdd", "DarkGreen", "DarkGreen")
-	call s:hifg("DiffAdd", "White", "White")
-
-	call s:hibg("DiffDelete", "DarkRed", "DarkRed")
-	call s:hifg("DiffDelete", "White", "White")
-
-	call s:hibg("DiffText", "DarkGreen", "DarkGreen")
-	call s:hifg("DiffText", "White", "White")
-
-	call s:hibg("DiffChange", "DarkGrey", "DarkGrey")
-	call s:hifg("DiffChange", "White", "White")
-
 	" General
 	call s:hifg("Comment", "#ff00ff", 165)
 	call s:hibg("ColorColumn", "#6a6a6a", "DarkGrey")
 	call s:hifg("Constant", "#1d105d", 89)
-	call s:hifg("rubyNumber", "#5f5f87", 196)
-	call s:hifg("String", "#009a44", 34)
+	call s:hifg("String", "#009a44", 28)
 	call s:hifg("Identifier", "#cd1414", 196)
 	call s:hifg("Statement", "#2950c5", 27)
 	call s:hifg("PreProc", "#A0522D", 94)
 	call s:hifg("railsUserMethod", "#008b8b", "DarkCyan")
 	call s:hifg("Type", "#ff5f00", 202)
 	call s:hifg("railsUserClass", "#0000af", "Grey")
-	call s:hifg("Special", "#005f87", "DarkGreen")
 	call s:hifg("Regexp", "#0000ff", "DarkCyan")
-	call s:hifg("rubyMethod", "#5fd75f", 196)
-	call s:hifg("VertSplit", "#af87d7", 196)
 	call s:hifg("Folded", "#5f5fff", "LightCyan")
 	call s:hifg("TabLineFill", "#5fffaf", "LightGrey")
 	call s:hibg("TabLineFill", "#5fff5f", "Grey")
