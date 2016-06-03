@@ -2,12 +2,10 @@
 if v:progname =~? "evim"
 	finish
 endif
-
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
-colorscheme apalos
-
 set t_Co=256
+set background=light
 set autoindent		" always set autoindenting on
 set nocompatible
 set enc=utf-8
@@ -27,7 +25,6 @@ set backspace=indent,eol,start
 set statusline+=\%f\ line:\%l,
 set statusline+=\ col:\ %c,
 set laststatus=2
-
 " Defaults
 set tabstop=8
 set shiftwidth=8
@@ -97,11 +94,12 @@ if has("autocmd")
 		\ set noexpandtab |
 		\ set textwidth=80
 else
-
 endif " has("autocmd")
+
+colorscheme apalos
 
 autocmd CursorMoved * if pumvisible() == 0|pclose|endif
 autocmd FileType c,cpp,java,php,perl,pl,python,py autocmd BufWritePre <buffer> :%s/\s\+$//e
-match OverLength /\%80v.\+/
 "syntax match Tab /\t/
 "hi Tab gui=underline guifg=blue ctermbg=blue
+match OverLength /\%80v.\+/
