@@ -47,13 +47,13 @@ call s:hifg("VertSplit", "#af87d7", 196)
 
 " Diff
 call s:hibg("DiffAdd", "DarkGreen", "DarkGreen")
-call s:hifg("DiffAdd", "White", "White")
+call s:hifg("DiffAdd", "Black", "Black")
 
 call s:hibg("DiffDelete", "DarkRed", "DarkRed")
-call s:hifg("DiffDelete", "White", "White")
+call s:hifg("DiffDelete", "Black", "Black")
 
 call s:hibg("DiffText", "DarkGreen", "DarkGreen")
-call s:hifg("DiffText", "White", "White")
+call s:hifg("DiffText", "DarkGrey", "DarkGrey")
 
 call s:hibg("DiffChange", "DarkGrey", "DarkGrey")
 call s:hifg("DiffChange", "White", "White")
