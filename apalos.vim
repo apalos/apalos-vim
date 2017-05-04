@@ -21,13 +21,6 @@ if exists("syntax_on")
 	syntax reset
 endif
 let colors_name = "apalos"
-" mac crap
-if !has("gui_mac")
-	" Mac GUI degrades italics to ugly underlining.
-	hi Comment gui=italic
-	hi railsUserClass  gui=italic
-	hi railsUserMethod gui=italic
-endif
 
 "a:0 number of extra args(after 'second', a:0 is if more than 4 args are
 "passed)
@@ -110,3 +103,9 @@ else
 	call s:hibg("Normal", "#ffffff", "White")
 	call s:hifg("Normal", "#000000", "Black")
 endif
+
+hi Comment gui=bold cterm=bold
+hi Type gui=bold cterm=bold
+hi Constant gui=bold cterm=bold
+hi String gui=bold cterm=bold
+hi Statement gui=bold cterm=bold

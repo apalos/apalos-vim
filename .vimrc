@@ -26,9 +26,9 @@ set statusline+=\%f\ line:\%l,
 set statusline+=\ col:\ %c,
 set laststatus=2
 " Defaults
-set tabstop=8
-set shiftwidth=8
-set ts=8
+set tabstop=4
+set shiftwidth=4
+set ts=4
 set noexpandtab
 set textwidth=80
 
@@ -93,6 +93,13 @@ if has("autocmd")
 		\ set softtabstop=4 |
 		\ set noexpandtab |
 		\ set textwidth=80
+
+	autocmd Filetype bash
+		\ set shiftwidth=4 |
+		\ set tabstop=4 |
+		\ set softtabstop=4 |
+		\ set noexpandtab |
+		\ set textwidth=80
 else
 endif " has("autocmd")
 
@@ -100,6 +107,6 @@ colorscheme apalos
 
 autocmd CursorMoved * if pumvisible() == 0|pclose|endif
 autocmd FileType c,cpp,java,php,perl,pl,python,py autocmd BufWritePre <buffer> :%s/\s\+$//e
-"syntax match Tab /\t/
-"hi Tab gui=underline guifg=blue ctermbg=blue
+syntax match Tab /\t/
+hi Tab gui=underline guifg=blue ctermbg=blue
 match OverLength /\%80v.\+/
