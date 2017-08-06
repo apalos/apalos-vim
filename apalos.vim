@@ -51,24 +51,28 @@ call s:hifg("DiffText", "DarkGrey", "DarkGrey")
 call s:hibg("DiffChange", "DarkGrey", "DarkGrey")
 call s:hifg("DiffChange", "White", "White")
 
+" Common
 call s:hifg("Comment", "#ffd787", 165)
-call s:hifg("Constant", "#00af5f", 93)
+call s:hifg("Constant", "#00af5f", 202)
 call s:hifg("Identifier", "#cd1414", 196)
 call s:hifg("PreProc", "#A0522D", 94)
 call s:hifg("Type", "#ff5f00", 202)
 call s:hifg("Regexp", "#0000ff", "DarkCyan")
 call s:hifg("Folded", "#5f5fff", "LightCyan")
-call s:hifg("String", "#5f5fff", 22)
-
+" Tabs
 call s:hifg("TabLineFill", "#5fffaf", "LightGrey")
 call s:hibg("TabLineFill", "#5fff5f", "Grey")
 call s:hifg("TabLine", "#5fffaf", "LightGrey")
 call s:hibg("TabLine", "#5fd7d7", "DarkGrey")
-
+" Menu
 call s:hibg("Pmenu", "#000087", "Blue")
 call s:hibg("PmenuSel", "#00afff", "DarkCyan")
+" Cursor
 call s:hibg("ColorColumn", "#5fd7ff", "DarkGrey")
-call s:hibg("Search", "#0067cc", 32)
+call s:hibg("CursorColumn", "#5fd7ff", "DarkGrey")
+call s:hibg("CursorLine", "#5fd7ff", "DarkGrey")
+" Search
+call s:hibg("Search", "#0067cc", 85)
 
 if &background == 'dark'
 " Highlighting
@@ -78,16 +82,14 @@ if &background == 'dark'
 	call s:hifg("PreProc", "#ff0000", 94)
 	call s:hibg("LineNr", "#5fff5f", "DarkBlue")
 	call s:hibg("Folded", "#00005f", "DarkBlue")
-	call s:hibg("Overlength", "#00005f", 251)
-	call s:hibg("StatusLine", '#00005f', 251)
-	"Cursor
-	call s:hibg("CursorLine", "#5fd7ff", "DarkGrey")
-	call s:hibg("CursorColumn", "#5fd7ff", "DarkGrey")
+	call s:hibg("Overlength", "#00005f", 88)
+	call s:hibg("StatusLine", '#00005f', 232)
+	call s:hifg("String", "#5f5fff", 35)
+	" Cursor
 	call s:hifg("Cursor", "#00af5f", "Black")
 	"Backgroung colour
-	call s:hibg("Normal", "#000000", "Black")
-	call s:hifg("Normal", "#ffffff", "White")
-
+	call s:hibg("Normal", "#000000", 235)
+	call s:hifg("Normal", "#ffffff", 251)
 else
 	" General
 	call s:hifg("Statement", "#2950c5", 27)
@@ -95,12 +97,11 @@ else
 	call s:hibg("Folded", "#00005f", "DarkBlue")
 	call s:hibg("Overlength", "#00005f", 141)
 	call s:hibg("StatusLine", '#00005f', 141)
-	"Cursor
-	call s:hibg("CursorLine", "#5fd7ff", "DarkGrey")
-	call s:hibg("CursorColumn", "#5fd7ff", "DarkGrey")
+	call s:hifg("String", "#5f5fff", 22)
+	" Cursor
 	call s:hifg("Cursor", "#00af5f", "Black")
-	"Backgroung colour
-	call s:hibg("Normal", "#ffffff", "White")
+	" Backgroung colour
+	call s:hibg("Normal", "#ffffff", 251)
 	call s:hifg("Normal", "#000000", "Black")
 endif
 

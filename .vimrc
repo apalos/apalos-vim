@@ -5,7 +5,7 @@ endif
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set t_Co=256
-set background=light
+set background=dark
 set autoindent		" always set autoindenting on
 set nocompatible
 set enc=utf-8
