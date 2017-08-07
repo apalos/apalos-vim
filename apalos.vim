@@ -53,7 +53,7 @@ call s:hifg("DiffChange", "White", "White")
 
 " Common
 call s:hifg("Comment", "#ffd787", 165)
-call s:hifg("Constant", "#00af5f", 202)
+call s:hifg("Constant", "#00af5f", 124)
 call s:hifg("Identifier", "#cd1414", 196)
 call s:hifg("PreProc", "#A0522D", 94)
 call s:hifg("Type", "#ff5f00", 202)
@@ -89,7 +89,7 @@ if &background == 'dark'
 	call s:hifg("Cursor", "#00af5f", "Black")
 	"Backgroung colour
 	call s:hibg("Normal", "#000000", 235)
-	call s:hifg("Normal", "#ffffff", 251)
+	call s:hifg("Normal", "#ffffff", 252)
 else
 	" General
 	call s:hifg("Statement", "#2950c5", 27)
