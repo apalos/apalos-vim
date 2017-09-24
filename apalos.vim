@@ -78,17 +78,17 @@ if &background == 'dark'
 " Highlighting
 " Diff
 	" General
-	call s:hifg("Statement", "#5fd7ff", 39)
+	call s:hifg("Statement", "#5fd7ff", 33)
 	call s:hifg("PreProc", "#ff0000", 94)
 	call s:hibg("LineNr", "#5fff5f", "DarkBlue")
 	call s:hibg("Folded", "#00005f", "DarkBlue")
 	call s:hibg("Overlength", "#00005f", 88)
 	call s:hibg("StatusLine", '#00005f', 232)
-	call s:hifg("String", "#5f5fff", 35)
+	call s:hifg("String", "#5f5fff", 34)
 	" Cursor
 	call s:hifg("Cursor", "#00af5f", "Black")
 	"Backgroung colour
-	call s:hibg("Normal", "#000000", 235)
+	call s:hibg("Normal", "#000000", 232)
 	call s:hifg("Normal", "#ffffff", 252)
 else
 	" General
