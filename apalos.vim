@@ -88,7 +88,7 @@ if &background == 'dark'
 	" Cursor
 	call s:hifg("Cursor", "#00af5f", "Black")
 	"Backgroung colour
-	call s:hibg("Normal", "#000000", 232)
+	call s:hibg("Normal", "#000000", 234)
 	call s:hifg("Normal", "#ffffff", 252)
 else
 	" General
