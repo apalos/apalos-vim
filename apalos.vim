@@ -52,7 +52,7 @@ call s:hibg("DiffChange", "DarkGrey", "DarkGrey")
 call s:hifg("DiffChange", "White", "White")
 
 " Common
-call s:hifg("Comment", "#ffd787", 165)
+call s:hifg("Comment", "#b347d0", 165)
 call s:hifg("Constant", "#00af5f", 124)
 call s:hifg("Identifier", "#cd1414", 196)
 call s:hifg("PreProc", "#A0522D", 94)
@@ -79,7 +79,6 @@ if &background == 'dark'
 " Diff
 	" General
 	call s:hifg("Statement", "#5fd7ff", 33)
-	call s:hifg("PreProc", "#ff0000", 94)
 	call s:hibg("LineNr", "#5fff5f", "DarkBlue")
 	call s:hibg("Folded", "#00005f", "DarkBlue")
 	call s:hibg("Overlength", "#00005f", 88)
@@ -88,20 +87,20 @@ if &background == 'dark'
 	" Cursor
 	call s:hifg("Cursor", "#00af5f", "Black")
 	"Backgroung colour
-	call s:hibg("Normal", "#000000", 234)
-	call s:hifg("Normal", "#ffffff", 252)
+	call s:hibg("Normal", "#e1e3da", 234)
+	call s:hifg("Normal", "#272727", 252)
 else
 	" General
-	call s:hifg("Statement", "#2950c5", 27)
+	call s:hifg("Statement", "#5fd7ff", 27)
 	call s:hibg("LineNr", "#5fff5f", "DarkBlue")
 	call s:hibg("Folded", "#00005f", "DarkBlue")
 	call s:hibg("Overlength", "#00005f", 141)
-	call s:hibg("StatusLine", '#00005f', 141)
+	call s:hibg("StatusLine", '#00005f', 106)
 	call s:hifg("String", "#5f5fff", 22)
 	" Cursor
 	call s:hifg("Cursor", "#00af5f", "Black")
 	" Backgroung colour
-	call s:hibg("Normal", "#ffffff", 251)
+	call s:hibg("Normal", "#ffffff", 254)
 	call s:hifg("Normal", "#000000", "Black")
 endif
 
